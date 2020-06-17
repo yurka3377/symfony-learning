@@ -5,7 +5,12 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TestController
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+// use Symfony\Component\HttpFoundation\Request;
+// use Symfony\Component\HttpFoundation\Response;
+// use Symfony\Component\Routing\Annotation\Route;
+
+class TestController extends AbstractController
 {
     public function hello(): Response
     {
@@ -43,7 +48,12 @@ class TestController
         for ($i=0; $i < $quantityStars; $i++){
             $stringStars .= "*";
         }
-        return new Response($stringStars);
+        // return new Response($stringStars);
+        return $this->render('print.stars.html.twig',
+        [
+            'quantityStars' => $quantityStars,
+            'stars'         => $stringStars
+        ]);
     }  
 
 }
